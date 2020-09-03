@@ -5,10 +5,9 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from 'vue-property-decorator'
-
-@Component
-export default class Header extends Vue {}
+export default {
+  name: 'Header'
+}
 </script>
 
 <style lang="scss" scoped>

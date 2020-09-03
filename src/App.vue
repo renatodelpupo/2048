@@ -6,14 +6,12 @@
 
 <script lang="ts">
 import Home from './components/pages/Home.vue'
-import { Component, Vue } from 'vue-property-decorator'
 
-@Component({
-  components: {
-    Home
-  }
-})
-export default class App extends Vue {}
+export default {
+  name: 'App',
+
+  components: { Home }
+}
 </script>
 
 <style lang="scss">

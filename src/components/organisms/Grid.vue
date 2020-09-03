@@ -5,21 +5,20 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from 'vue-property-decorator'
 import Square from '../atoms/Square.vue'
 
-@Component({
-  components: {
-    Square
-  },
+export default {
+  name: 'Grid',
+
+  components: { Square },
 
   props: {
     squares: {
+      required: true,
       type: Array
     }
   }
-})
-export default class Grid extends Vue {}
+}
 </script>
 
 <style lang="scss" scoped>

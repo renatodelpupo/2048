@@ -3,11 +3,15 @@
 </template>
 
 <script lang="ts">
-import { Component, Prop, Vue } from 'vue-property-decorator'
+export default {
+  name: 'Square',
 
-@Component
-export default class Square extends Vue {
-  @Prop() private number = 0
+  props: {
+    number: {
+      required: true,
+      type: Number
+    }
+  }
 }
 </script>
 

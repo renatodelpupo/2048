@@ -8,11 +8,15 @@
 </template>
 
 <script lang="ts">
-import { Component, Prop, Vue } from 'vue-property-decorator'
+export default {
+  name: 'Footer',
 
-@Component
-export default class Footer extends Vue {
-  @Prop() private score = 0
+  props: {
+    score: {
+      default: 0,
+      type: Number
+    }
+  }
 }
 </script>
 

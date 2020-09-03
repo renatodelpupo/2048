@@ -11,30 +11,30 @@
 <script lang="ts">
 import AppFooter from '../organisms/Footer.vue'
 import AppHeader from '../organisms/Header.vue'
-import { Component, Vue } from 'vue-property-decorator'
 import Grid from '../organisms/Grid.vue'
 
-@Component({
-  components: {
-    AppFooter,
-    AppHeader,
-    Grid
-  }
-})
-export default class Home extends Vue {
-  private score = 0
-  private squares: Array<number> = Array(16).fill(0)
+export default {
+  name: 'Home',
+
+  components: { AppFooter, AppHeader, Grid },
+
+  data: () => ({
+    score: 0,
+    squares: Array(16).fill(0) as Array<number>
+  }),
 
   mounted() {
     this.generate()
-  }
+  },
 
-  private generate(): void {
-    const randomNumber = Math.floor(Math.random() * this.squares.length)
-    if (this.squares[randomNumber] === 0) {
-      Vue.set(this.squares, randomNumber, 2)
-    } else {
-      this.generate()
+  methods: {
+    generate() {
+      const randomNumber = Math.floor(Math.random() * this.squares.length)
+      if (this.squares[randomNumber] === 0) {
+        this.squares[randomNumber] = 2
+      } else {
+        this.generate()
+      }
     }
   }
 }
