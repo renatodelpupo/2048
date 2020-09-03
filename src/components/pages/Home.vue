@@ -11,6 +11,7 @@
 <script lang="ts">
 import AppFooter from '../organisms/Footer.vue'
 import AppHeader from '../organisms/Header.vue'
+import { onMounted, ref } from 'vue'
 import Grid from '../organisms/Grid.vue'
 
 export default {
@@ -18,23 +19,23 @@ export default {
 
   components: { AppFooter, AppHeader, Grid },
 
-  data: () => ({
-    score: 0,
-    squares: Array(16).fill(0) as Array<number>
-  }),
+  setup() {
+    const squares = ref(Array(16).fill(0))
 
-  mounted() {
-    this.generate()
-  },
+    const generate = () => {
+      const randomNumber = Math.floor(Math.random() * squares.value.length)
 
-  methods: {
-    generate() {
-      const randomNumber = Math.floor(Math.random() * this.squares.length)
-      if (this.squares[randomNumber] === 0) {
-        this.squares[randomNumber] = 2
+      if (squares.value[randomNumber] === 0) {
+        squares.value[randomNumber] = 2
       } else {
-        this.generate()
+        generate()
       }
+    }
+
+    onMounted(generate)
+
+    return {
+      squares
     }
   }
 }
