@@ -11,10 +11,10 @@
 <script lang="ts">
 import AppFooter from '../organisms/Footer.vue'
 import AppHeader from '../organisms/Header.vue'
-import { onMounted, ref } from 'vue'
+import { defineComponent, onMounted, ref } from 'vue'
 import Grid from '../organisms/Grid.vue'
 
-export default {
+export default defineComponent({
   name: 'Home',
 
   components: { AppFooter, AppHeader, Grid },
@@ -38,7 +38,7 @@ export default {
       squares
     }
   }
-}
+})
 </script>
 
 <style lang="scss" scoped>
