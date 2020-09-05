@@ -184,17 +184,17 @@ export default defineComponent({
     let xDown = 0
     let yDown = 0
 
-    function getTouches(evt: TouchEvent) {
+    const getTouches = (evt: TouchEvent) => {
       return evt.touches
     }
 
-    function handleTouchStart(evt: TouchEvent) {
+    const handleTouchStart = (evt: TouchEvent) => {
       const firstTouch = getTouches(evt)[0]
       xDown = firstTouch.clientX
       yDown = firstTouch.clientY
     }
 
-    function handleTouchMove(evt: TouchEvent) {
+    const handleTouchMove = (evt: TouchEvent) => {
       if (!xDown || !yDown) {
         return
       }
