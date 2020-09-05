@@ -180,6 +180,51 @@ export default defineComponent({
       }
     })
 
+    let xDown = 0
+    let yDown = 0
+
+    function getTouches(evt: TouchEvent) {
+      return evt.touches
+    }
+
+    function handleTouchStart(evt: TouchEvent) {
+      const firstTouch = getTouches(evt)[0]
+      xDown = firstTouch.clientX
+      yDown = firstTouch.clientY
+    }
+
+    function handleTouchMove(evt: TouchEvent) {
+      if (!xDown || !yDown) {
+        return
+      }
+
+      const xUp = evt.touches[0].clientX
+      const yUp = evt.touches[0].clientY
+
+      const xDiff = xDown - xUp
+      const yDiff = yDown - yUp
+
+      if (Math.abs(xDiff) > Math.abs(yDiff)) {
+        if (xDiff > 0) {
+          keyLeft()
+        } else {
+          keyRight()
+        }
+      } else {
+        if (yDiff > 0) {
+          keyUp()
+        } else {
+          keyDown()
+        }
+      }
+
+      xDown = 0
+      yDown = 0
+    }
+
+    window.document.addEventListener('touchstart', handleTouchStart, false)
+    window.document.addEventListener('touchmove', handleTouchMove, false)
+
     onMounted(generate)
 
     return {
