@@ -20,7 +20,9 @@ export default defineComponent({
   components: { AppFooter, AppHeader, Grid },
 
   setup() {
+    const score = ref(0)
     const squares = ref(Array(16).fill(0))
+    const width = 4
 
     const generate = () => {
       const randomNumber = Math.floor(Math.random() * squares.value.length)
@@ -32,9 +34,156 @@ export default defineComponent({
       }
     }
 
+    const moveDown = () => {
+      for (let i = 0; i < 4; i++) {
+        const totalOne = squares.value[i]
+        const totalTwo = squares.value[i + width]
+        const totalThree = squares.value[i + width * 2]
+        const totalFour = squares.value[i + width * 3]
+        const column = [parseInt(totalOne), parseInt(totalTwo), parseInt(totalThree), parseInt(totalFour)]
+
+        const filteredColumn = column.filter((num) => num)
+        const missing = 4 - filteredColumn.length
+        const zeros = Array(missing).fill(0)
+        const newColumn = zeros.concat(filteredColumn)
+
+        squares.value[i] = newColumn[0]
+        squares.value[i + width] = newColumn[1]
+        squares.value[i + width * 2] = newColumn[2]
+        squares.value[i + width * 3] = newColumn[3]
+      }
+    }
+
+    const moveLeft = () => {
+      for (let i = 0; i < 16; i++) {
+        if (i % 4 === 0) {
+          const totalOne = squares.value[i]
+          const totalTwo = squares.value[i + 1]
+          const totalThree = squares.value[i + 2]
+          const totalFour = squares.value[i + 3]
+          const row = [parseInt(totalOne), parseInt(totalTwo), parseInt(totalThree), parseInt(totalFour)]
+
+          const filteredRow = row.filter((num) => num)
+          const missing = 4 - filteredRow.length
+          const zeros = Array(missing).fill(0)
+          const newRow = filteredRow.concat(zeros)
+
+          squares.value[i] = newRow[0]
+          squares.value[i + 1] = newRow[1]
+          squares.value[i + 2] = newRow[2]
+          squares.value[i + 3] = newRow[3]
+        }
+      }
+    }
+
+    const moveRight = () => {
+      for (let i = 0; i < 16; i++) {
+        if (i % 4 === 0) {
+          const totalOne = squares.value[i]
+          const totalTwo = squares.value[i + 1]
+          const totalThree = squares.value[i + 2]
+          const totalFour = squares.value[i + 3]
+          const row = [parseInt(totalOne), parseInt(totalTwo), parseInt(totalThree), parseInt(totalFour)]
+
+          const filteredRow = row.filter((num) => num)
+          const missing = 4 - filteredRow.length
+          const zeros = Array(missing).fill(0)
+          const newRow = zeros.concat(filteredRow)
+
+          squares.value[i] = newRow[0]
+          squares.value[i + 1] = newRow[1]
+          squares.value[i + 2] = newRow[2]
+          squares.value[i + 3] = newRow[3]
+        }
+      }
+    }
+
+    const moveUp = () => {
+      for (let i = 0; i < 4; i++) {
+        const totalOne = squares.value[i]
+        const totalTwo = squares.value[i + width]
+        const totalThree = squares.value[i + width * 2]
+        const totalFour = squares.value[i + width * 3]
+        const column = [parseInt(totalOne), parseInt(totalTwo), parseInt(totalThree), parseInt(totalFour)]
+
+        const filteredColumn = column.filter((num) => num)
+        const missing = 4 - filteredColumn.length
+        const zeros = Array(missing).fill(0)
+        const newColumn = filteredColumn.concat(zeros)
+
+        squares.value[i] = newColumn[0]
+        squares.value[i + width] = newColumn[1]
+        squares.value[i + width * 2] = newColumn[2]
+        squares.value[i + width * 3] = newColumn[3]
+      }
+    }
+
+    const combineColumn = () => {
+      for (let i = 0; i < 12; i++) {
+        if (squares.value[i] === squares.value[i + width]) {
+          const combinedTotal = parseInt(squares.value[i]) + parseInt(squares.value[i + width])
+          squares.value[i] = combinedTotal
+          squares.value[i + width] = 0
+          score.value = score.value + combinedTotal
+        }
+      }
+    }
+
+    const combineRow = () => {
+      for (let i = 0; i < 15; i++) {
+        if (squares.value[i] === squares.value[i + 1]) {
+          const combinedTotal = parseInt(squares.value[i]) + parseInt(squares.value[i + 1])
+          squares.value[i] = combinedTotal
+          squares.value[i + 1] = 0
+          score.value = score.value + combinedTotal
+        }
+      }
+    }
+
+    const keyDown = () => {
+      moveDown()
+      combineColumn()
+      moveDown()
+      generate()
+    }
+
+    const keyLeft = () => {
+      moveLeft()
+      combineRow()
+      moveLeft()
+      generate()
+    }
+
+    const keyRight = () => {
+      moveRight()
+      combineRow()
+      moveRight()
+      generate()
+    }
+
+    const keyUp = () => {
+      moveUp()
+      combineColumn()
+      moveUp()
+      generate()
+    }
+
+    window.document.addEventListener('keyup', (e: KeyboardEvent) => {
+      if (e.keyCode === 37) {
+        keyLeft()
+      } else if (e.keyCode === 38) {
+        keyUp()
+      } else if (e.keyCode === 39) {
+        keyRight()
+      } else if (e.keyCode === 40) {
+        keyDown()
+      }
+    })
+
     onMounted(generate)
 
     return {
+      score,
       squares
     }
   }
