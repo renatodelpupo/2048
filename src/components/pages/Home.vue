@@ -228,9 +228,17 @@ export default defineComponent({
 
     const toggleTheme = () => {
       darkTheme.value = !darkTheme.value
+      localStorage.setItem('darkTheme', darkTheme.value.toString())
     }
 
-    onMounted(generate)
+    const getTheme = () => {
+      darkTheme.value = localStorage.getItem('darkTheme') === 'false' ? false : true
+    }
+
+    onMounted(() => {
+      generate()
+      getTheme()
+    })
 
     return {
       darkTheme,
