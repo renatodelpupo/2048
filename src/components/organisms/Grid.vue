@@ -26,8 +26,8 @@ export default defineComponent({
 .Grid {
   display: flex;
   flex-wrap: wrap;
-  height: 456px;
+  height: 340px;
   margin: 20px auto;
-  width: 456px;
+  width: 340px;
 }
 </style>
