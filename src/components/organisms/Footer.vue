@@ -1,5 +1,5 @@
 <template>
-  <div class="Footer">
+  <div class="Footer" :class="[darkTheme ? 'theme-dark' : 'theme-light']">
     <div class="Footer-streak">
       <span class="Footer-streak-icon">🔥</span>
       <span lass="Footer-streak-text" v-text="score" />
@@ -32,8 +32,6 @@ export default defineComponent({
 
 <style lang="scss" scoped>
 .Footer {
-  background-color: #383838;
-  color: #ffffff;
   display: flex;
   height: 40px;
   text-transform: uppercase;
@@ -54,6 +52,16 @@ export default defineComponent({
     &-text {
       font-size: 1.1em;
     }
+  }
+
+  &.theme-dark {
+    background-color: #383838;
+    color: #ffffff;
+  }
+
+  &.theme-light {
+    background-color: #65839b;
+    color: #edf4f8;
   }
 }
 </style>

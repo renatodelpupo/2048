@@ -33,7 +33,6 @@ export default defineComponent({
     width: 40px;
 
     .slider {
-      background-color: #a3a3a3;
       border-radius: 34px;
       bottom: 0;
       cursor: pointer;
@@ -59,14 +58,18 @@ export default defineComponent({
       }
 
       &.theme-dark {
+        background-color: #a3a3a3;
+
         &:before {
           background-color: #525252;
         }
       }
 
       &.theme-light {
+        background-color: #fcebd8;
+
         &:before {
-          background-color: #cccccc;
+          background-color: #e77538;
           transform: translateX(18px);
         }
       }

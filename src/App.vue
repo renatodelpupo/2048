@@ -21,8 +21,6 @@ export default defineComponent({
 }
 
 body {
-  background-color: #1e1e1e;
-  color: #cccccc;
   font-family: sans-serif;
   font-size: 14px;
   margin: 0;

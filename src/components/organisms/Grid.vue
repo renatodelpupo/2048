@@ -1,6 +1,6 @@
 <template>
   <div class="Grid">
-    <square v-for="(square, index) in squares" :key="index" :number="square" />
+    <square v-for="(square, index) in squares" :darkTheme="darkTheme" :key="index" :number="square" />
   </div>
 </template>
 
@@ -14,6 +14,10 @@ export default defineComponent({
   components: { Square },
 
   props: {
+    darkTheme: {
+      default: true,
+      type: Boolean
+    },
     squares: {
       required: true,
       type: Array

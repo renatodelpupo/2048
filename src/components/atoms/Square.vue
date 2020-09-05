@@ -9,6 +9,10 @@ export default defineComponent({
   name: 'Square',
 
   props: {
+    darkTheme: {
+      default: true,
+      type: Boolean
+    },
     number: {
       required: true,
       type: Number
@@ -26,7 +30,7 @@ export default defineComponent({
         [index: number]: ColorsOption
       }
 
-      const colorsOptions: ColorsOptions = {
+      const colorsOptionsDark: ColorsOptions = {
         0: {
           background: '#383838',
           text: 'transparent'
@@ -77,6 +81,58 @@ export default defineComponent({
         }
       }
 
+      const colorsOptionsLight: ColorsOptions = {
+        0: {
+          background: '#65839B',
+          text: 'transparent'
+        },
+        2: {
+          background: '#EDF4F8',
+          text: '#798691'
+        },
+        4: {
+          background: '#E9F6FE',
+          text: '#6289A2'
+        },
+        8: {
+          background: '#957869',
+          text: '#6B4E40'
+        },
+        16: {
+          background: '#B2E8FC',
+          text: '#54AEF1'
+        },
+        32: {
+          background: '#E7F4D3',
+          text: '#6CA03B'
+        },
+        64: {
+          background: '#ECE4FD',
+          text: '#7F5FC4'
+        },
+        128: {
+          background: '#FAE1EA',
+          text: '#CE516E'
+        },
+        256: {
+          background: '#FCEBD8',
+          text: '#E77538'
+        },
+        512: {
+          background: '#FFFA97',
+          text: '#F3A53B'
+        },
+        1024: {
+          background: '#ED669F',
+          text: '#FFFFFF'
+        },
+        2048: {
+          background: '#CF2E26',
+          text: '#FFFFFF'
+        }
+      }
+
+      const colorsOptions: ColorsOptions = props.darkTheme ? colorsOptionsDark : colorsOptionsLight
       const colorsOption: ColorsOption = colorsOptions[props.number]
 
       return {

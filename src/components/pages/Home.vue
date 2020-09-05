@@ -1,8 +1,8 @@
 <template>
-  <div class="Home">
-    <app-header />
+  <div class="Home" :class="[darkTheme ? 'theme-dark' : 'theme-light']">
+    <app-header :darkTheme="darkTheme" />
     <main class="Main">
-      <grid :squares="squares" />
+      <grid :darkTheme="darkTheme" :squares="squares" />
     </main>
     <app-footer :darkTheme="darkTheme" :score="score" @toggle-theme="toggleTheme" />
   </div>
@@ -248,6 +248,14 @@ export default defineComponent({
   flex-direction: column;
   height: 100vh;
   overflow: hidden;
+
+  &.theme-dark {
+    background-color: #1e1e1e;
+  }
+
+  &.theme-light {
+    background-color: #fffeef;
+  }
 }
 
 .Main {
