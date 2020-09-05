@@ -1,6 +1,6 @@
 <template>
   <div class="ThemeSwitcher">
-    <label class="switch" id="switch" @click="toggleTheme()">
+    <label class="switch" id="switch" @click="() => $emit('toggle-theme')">
       <span class="slider" :class="[darkTheme ? 'theme-dark' : 'theme-light']" />
     </label>
   </div>
@@ -12,16 +12,10 @@ import { defineComponent, ref } from 'vue'
 export default defineComponent({
   name: 'ThemeSwitcher',
 
-  setup() {
-    const darkTheme = ref(true)
-
-    const toggleTheme = () => {
-      darkTheme.value = !darkTheme.value
-    }
-
-    return {
-      darkTheme,
-      toggleTheme
+  props: {
+    darkTheme: {
+      default: true,
+      type: Boolean
     }
   }
 })

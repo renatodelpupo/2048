@@ -4,7 +4,7 @@
     <main class="Main">
       <grid :squares="squares" />
     </main>
-    <app-footer :score="score" />
+    <app-footer :darkTheme="darkTheme" :score="score" @toggle-theme="toggleTheme" />
   </div>
 </template>
 
@@ -20,6 +20,7 @@ export default defineComponent({
   components: { AppFooter, AppHeader, Grid },
 
   setup() {
+    const darkTheme = ref(true)
     const score = ref(0)
     const squares = ref(Array(16).fill(0))
     const width = 4
@@ -225,11 +226,17 @@ export default defineComponent({
     window.document.addEventListener('touchstart', handleTouchStart, false)
     window.document.addEventListener('touchmove', handleTouchMove, false)
 
+    const toggleTheme = () => {
+      darkTheme.value = !darkTheme.value
+    }
+
     onMounted(generate)
 
     return {
+      darkTheme,
       score,
-      squares
+      squares,
+      toggleTheme
     }
   }
 })

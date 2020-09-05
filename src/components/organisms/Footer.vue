@@ -4,16 +4,24 @@
       <span class="Footer-streak-icon">🔥</span>
       <span lass="Footer-streak-text" v-text="score" />
     </div>
+    <theme-switcher :darkTheme="darkTheme" @toggle-theme="() => $emit('toggle-theme')" />
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue'
+import ThemeSwitcher from '../atoms/ThemeSwitcher.vue'
 
 export default defineComponent({
   name: 'Footer',
 
+  components: { ThemeSwitcher },
+
   props: {
+    darkTheme: {
+      default: true,
+      type: Boolean
+    },
     score: {
       default: 0,
       type: Number
