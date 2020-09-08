@@ -17,7 +17,11 @@
         :key="button.text"
         :style="style.button"
         :text="button.text"
-        @click="() => $emit(button.event)"
+        @click="
+          () => {
+            if (button.event) $emit(button.event)
+          }
+        "
       />
     </div>
   </div>
