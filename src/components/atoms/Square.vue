@@ -4,15 +4,12 @@
 
 <script lang="ts">
 import { computed, defineComponent } from 'vue'
+import store from '@/store'
 
 export default defineComponent({
   name: 'Square',
 
   props: {
-    darkTheme: {
-      default: true,
-      type: Boolean
-    },
     number: {
       required: true,
       type: Number
@@ -132,7 +129,7 @@ export default defineComponent({
         }
       }
 
-      const colorsOptions: ColorsOptions = props.darkTheme ? colorsOptionsDark : colorsOptionsLight
+      const colorsOptions: ColorsOptions = store.state.darkTheme ? colorsOptionsDark : colorsOptionsLight
       const colorsOption: ColorsOption = colorsOptions[props.number]
 
       return {

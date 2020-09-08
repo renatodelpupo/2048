@@ -4,11 +4,16 @@
       {
         event: 'go-to-game',
         text: 'Back to game'
+      },
+      {
+        event: 'toggle-theme',
+        text: 'Toggle theme'
       }
     ]"
     title="Settings"
     :style="style"
     @go-to-game="goToGame"
+    @toggle-theme="toggleTheme"
   />
 </template>
 
@@ -16,20 +21,14 @@
 import router from '@/router'
 import { computed, defineComponent } from 'vue'
 import GenericScreen from '@/components/templates/GenericScreen.vue'
+import store from '@/store'
 
 export default defineComponent({
   name: 'Settings',
 
   components: { GenericScreen },
 
-  props: {
-    darkTheme: {
-      default: true,
-      type: Boolean
-    }
-  },
-
-  setup(props) {
+  setup() {
     const goToGame = () => {
       router.push({ path: '/' })
     }
@@ -52,10 +51,14 @@ export default defineComponent({
         textColor: '#65839b'
       }
 
-      return props.darkTheme ? dark : light
+      return store.state.darkTheme ? dark : light
     })
 
-    return { goToGame, style }
+    const toggleTheme = () => {
+      store.commit('setDarkTheme', !store.state.darkTheme)
+    }
+
+    return { goToGame, style, toggleTheme }
   }
 })
 </script>

@@ -2,9 +2,9 @@
   <div class="Home" :class="[darkTheme ? 'theme-dark' : 'theme-light']">
     <app-header />
     <main class="Main">
-      <grid :darkTheme="darkTheme" :squares="squares" />
+      <grid :squares="squares" />
     </main>
-    <app-footer :score="score" @toggle-theme="toggleTheme" />
+    <app-footer :score="score" />
   </div>
 </template>
 
@@ -14,6 +14,7 @@ import AppHeader from '@/components/organisms/Header.vue'
 import { computed, defineComponent, onMounted, ref, watch } from 'vue'
 import Grid from '@/components/organisms/Grid.vue'
 import router from '@/router'
+import store from '@/store'
 
 export default defineComponent({
   name: 'Home',
@@ -21,7 +22,6 @@ export default defineComponent({
   components: { AppFooter, AppHeader, Grid },
 
   setup() {
-    const darkTheme = ref(true)
     const score = ref(0)
     const squares = ref(Array(16).fill(0))
     const width = 4
@@ -242,14 +242,9 @@ export default defineComponent({
     window.document.addEventListener('touchstart', handleTouchStart, false)
     window.document.addEventListener('touchmove', handleTouchMove, false)
 
-    const toggleTheme = () => {
-      darkTheme.value = !darkTheme.value
-      localStorage.setItem('darkTheme', darkTheme.value.toString())
-    }
-
-    const getTheme = () => {
-      darkTheme.value = localStorage.getItem('darkTheme') === 'false' ? false : true
-    }
+    const darkTheme = computed(() => {
+      return store.state.darkTheme
+    })
 
     const win = computed(() => {
       return Boolean(squares.value.includes(2048))
@@ -260,15 +255,13 @@ export default defineComponent({
     })
 
     onMounted(() => {
-      getTheme()
       mountGame()
     })
 
     return {
       darkTheme,
       score,
-      squares,
-      toggleTheme
+      squares
     }
   }
 })
