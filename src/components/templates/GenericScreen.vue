@@ -47,7 +47,10 @@ export default defineComponent({
 
   props: {
     buttons: {
-      type: Object
+      type: Object as () => {
+        event: string
+        text: string
+      }
     },
     message: {
       default: '',

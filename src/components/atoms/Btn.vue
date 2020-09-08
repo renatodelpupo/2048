@@ -9,7 +9,7 @@
   />
 </template>
 
-<script>
+<script lang="ts">
 import { defineComponent } from 'vue'
 
 export default defineComponent({
@@ -21,7 +21,10 @@ export default defineComponent({
       type: String
     },
     style: {
-      type: Object
+      type: Object as () => {
+        backgroundColor: string
+        textColor: string
+      }
     }
   }
 })
