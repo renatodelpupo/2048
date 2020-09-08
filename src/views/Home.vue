@@ -11,8 +11,9 @@
 <script lang="ts">
 import AppFooter from '../components/organisms/Footer.vue'
 import AppHeader from '../components/organisms/Header.vue'
-import { defineComponent, onMounted, ref } from 'vue'
+import { computed, defineComponent, onMounted, ref, watch } from 'vue'
 import Grid from '../components/organisms/Grid.vue'
+import router from '@/router'
 
 export default defineComponent({
   name: 'Home',
@@ -249,6 +250,14 @@ export default defineComponent({
     const getTheme = () => {
       darkTheme.value = localStorage.getItem('darkTheme') === 'false' ? false : true
     }
+
+    const win = computed(() => {
+      return Boolean(squares.value.includes(2048))
+    })
+
+    watch(win, (state) => {
+      if (state) router.push({ path: '/success' })
+    })
 
     onMounted(() => {
       getTheme()
