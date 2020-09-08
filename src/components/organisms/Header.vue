@@ -1,5 +1,5 @@
 <template>
-  <div class="Header" :class="[darkTheme ? 'theme-dark' : 'theme-light']">
+  <div class="Header">
     <h1>2048</h1>
   </div>
 </template>
@@ -8,14 +8,7 @@
 import { defineComponent } from 'vue'
 
 export default defineComponent({
-  name: 'Header',
-
-  props: {
-    darkTheme: {
-      default: true,
-      type: Boolean
-    }
-  }
+  name: 'Header'
 })
 </script>
 
@@ -24,20 +17,20 @@ export default defineComponent({
   font-size: 18px;
   padding: 10px 20px;
 
-  &.theme-dark {
-    background-color: #383838;
-    color: #ccc;
-  }
-
-  &.theme-light {
-    background-color: #65839b;
-    color: #edf4f8;
-  }
-
   h1 {
     font-size: 18px;
     margin: 0;
     text-align: center;
   }
+}
+
+.theme-dark .Header {
+  background-color: #383838;
+  color: #ccc;
+}
+
+.theme-light .Header {
+  background-color: #788791;
+  color: #ffffff;
 }
 </style>

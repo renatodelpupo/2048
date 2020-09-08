@@ -83,52 +83,52 @@ export default defineComponent({
 
       const colorsOptionsLight: ColorsOptions = {
         0: {
-          background: '#65839B',
+          background: '#e6e5df',
           text: 'transparent'
         },
         2: {
-          background: '#EDF4F8',
+          background: '#edf4f8',
           text: '#798691'
         },
         4: {
-          background: '#E9F6FE',
-          text: '#6289A2'
+          background: '#e9f6fe',
+          text: '#6289a2'
         },
         8: {
-          background: '#957869',
-          text: '#6B4E40'
+          background: '#bbd9d9',
+          text: '#3e6e6e'
         },
         16: {
-          background: '#B2E8FC',
-          text: '#54AEF1'
+          background: '#b2e8fc',
+          text: '#54aef1'
         },
         32: {
-          background: '#E7F4D3',
-          text: '#6CA03B'
+          background: '#e7f4d3',
+          text: '#6ca03b'
         },
         64: {
-          background: '#ECE4FD',
-          text: '#7F5FC4'
+          background: '#ece4fd',
+          text: '#7F5Fc4'
         },
         128: {
-          background: '#FAE1EA',
-          text: '#CE516E'
+          background: '#fae1ea',
+          text: '#ce516e'
         },
         256: {
-          background: '#FCEBD8',
-          text: '#E77538'
+          background: '#fcebd8',
+          text: '#e77538'
         },
         512: {
-          background: '#FFFA97',
-          text: '#F3A53B'
+          background: '#fffa97',
+          text: '#f3a53b'
         },
         1024: {
-          background: '#ED669F',
-          text: '#FFFFFF'
+          background: '#ed669f',
+          text: '#ffffff'
         },
         2048: {
-          background: '#CF2E26',
-          text: '#FFFFFF'
+          background: '#cf2e26',
+          text: '#ffffff'
         }
       }
 

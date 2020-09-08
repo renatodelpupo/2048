@@ -1,10 +1,10 @@
 <template>
   <div class="Home" :class="[darkTheme ? 'theme-dark' : 'theme-light']">
-    <app-header :darkTheme="darkTheme" />
+    <app-header />
     <main class="Main">
       <grid :darkTheme="darkTheme" :squares="squares" />
     </main>
-    <app-footer :darkTheme="darkTheme" :score="score" @toggle-theme="toggleTheme" />
+    <app-footer :score="score" @toggle-theme="toggleTheme" />
   </div>
 </template>
 

@@ -1,5 +1,5 @@
 <template>
-  <div class="Footer" :class="[darkTheme ? 'theme-dark' : 'theme-light']">
+  <div class="Footer">
     <div class="Footer-streak">
       <span class="Footer-streak-icon">🔥</span>
       <span lass="Footer-streak-text" v-text="score" />
@@ -17,10 +17,6 @@ export default defineComponent({
   name: 'Footer',
 
   props: {
-    darkTheme: {
-      default: true,
-      type: Boolean
-    },
     score: {
       default: 0,
       type: Number
@@ -43,7 +39,6 @@ export default defineComponent({
   }
 
   &-actions {
-    background-color: #656565;
     margin: -15px;
     padding: 15px;
   }
@@ -63,15 +58,23 @@ export default defineComponent({
       font-size: 1.1em;
     }
   }
+}
 
-  &.theme-dark {
-    background-color: #383838;
-    color: #ffffff;
+.theme-dark .Footer {
+  background-color: #383838;
+  color: #ffffff;
+
+  &-actions {
+    background-color: #656565;
   }
+}
 
-  &.theme-light {
-    background-color: #65839b;
-    color: #edf4f8;
+.theme-light .Footer {
+  background-color: #788791;
+  color: #ffffff;
+
+  &-actions {
+    background-color: #4f5961;
   }
 }
 </style>
