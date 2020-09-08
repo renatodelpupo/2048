@@ -9,10 +9,10 @@
 </template>
 
 <script lang="ts">
-import AppFooter from '../organisms/Footer.vue'
-import AppHeader from '../organisms/Header.vue'
+import AppFooter from '../components/organisms/Footer.vue'
+import AppHeader from '../components/organisms/Header.vue'
 import { defineComponent, onMounted, ref } from 'vue'
-import Grid from '../organisms/Grid.vue'
+import Grid from '../components/organisms/Grid.vue'
 
 export default defineComponent({
   name: 'Home',
