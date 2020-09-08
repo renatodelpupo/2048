@@ -4,8 +4,8 @@ module.exports = {
     appleMobileWebAppStatusBarStyle: 'black',
     msTileColor: '#383838',
     name: '2048',
-    short_name: '2048',
-    start_url: '/index.html',
+    shortName: '2048',
+    startUrl: '/index.html',
     themeColor: '#383838'
   }
 }
