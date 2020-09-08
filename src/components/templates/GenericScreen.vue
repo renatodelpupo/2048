@@ -28,7 +28,7 @@
 </template>
 
 <script lang="ts">
-import Btn from '../atoms/Btn.vue'
+import Btn from '@/components/atoms/Btn.vue'
 import { defineComponent } from 'vue'
 
 type Style = {

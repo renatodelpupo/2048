@@ -6,7 +6,7 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue'
-import Square from '../atoms/Square.vue'
+import Square from '@/components/atoms/Square.vue'
 
 export default defineComponent({
   name: 'Grid',

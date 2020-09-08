@@ -1,8 +1,8 @@
 import { createRouter, createWebHashHistory, RouteRecordRaw } from 'vue-router'
-import Fail from '../views/Fail.vue'
-import Home from '../views/Home.vue'
-import Settings from '../views/Settings.vue'
-import Success from '../views/Success.vue'
+import Fail from '@/views/Fail.vue'
+import Home from '@/views/Home.vue'
+import Settings from '@/views/Settings.vue'
+import Success from '@/views/Success.vue'
 
 const routes: Array<RouteRecordRaw> = [
   {
