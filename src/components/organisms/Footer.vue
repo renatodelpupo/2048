@@ -4,6 +4,9 @@
       <span class="Footer-streak-icon">🔥</span>
       <span lass="Footer-streak-text" v-text="score" />
     </div>
+    <div class="Footer-actions">
+      <router-link to="/settings" class="Footer-action">Settings</router-link>
+    </div>
   </div>
 </template>
 
@@ -29,10 +32,21 @@ export default defineComponent({
 <style lang="scss" scoped>
 .Footer {
   display: flex;
-  height: 40px;
+  height: 45px;
   text-transform: uppercase;
   padding: 15px;
   width: 100%;
+
+  &-action {
+    color: white;
+    text-decoration: none;
+  }
+
+  &-actions {
+    background-color: #656565;
+    margin: -15px;
+    padding: 15px;
+  }
 
   &-streak {
     align-items: center;
