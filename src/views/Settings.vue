@@ -2,13 +2,6 @@
   <generic-screen
     :buttons="[
       {
-        text: 'Restart'
-      },
-      {
-        event: 'toggle-theme',
-        text: 'Toggle theme'
-      },
-      {
         event: 'go-to-game',
         text: 'Back to game'
       }
@@ -16,7 +9,6 @@
     title="Settings"
     :style="style"
     @go-to-game="goToGame"
-    @toggle-theme="() => $emit('toggle-theme')"
   />
 </template>
 

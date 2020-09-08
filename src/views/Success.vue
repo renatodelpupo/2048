@@ -1,14 +1,6 @@
 <template>
   <generic-screen
-    :buttons="[
-      {
-        event: 'go-to-game',
-        text: 'Continue'
-      },
-      {
-        text: 'Restart'
-      }
-    ]"
+    :buttons="[]"
     message="You reached 2048!"
     title="Congratulations!!"
     titleEmoji="🎉"
@@ -20,26 +12,16 @@
       },
       textColor: '#ffffff'
     }"
-    @go-to-game="goToGame"
   />
 </template>
 
 <script lang="ts">
-import router from '@/router'
 import { defineComponent } from 'vue'
 import GenericScreen from '../components/templates/GenericScreen.vue'
 
 export default defineComponent({
   name: 'Success',
 
-  components: { GenericScreen },
-
-  setup() {
-    const goToGame = () => {
-      router.push({ path: '/' })
-    }
-
-    return { goToGame }
-  }
+  components: { GenericScreen }
 })
 </script>

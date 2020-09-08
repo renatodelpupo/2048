@@ -1,10 +1,6 @@
 <template>
   <generic-screen
-    :buttons="[
-      {
-        text: 'Restart'
-      }
-    ]"
+    :buttons="[]"
     message="You lose!"
     title="Oh, no!"
     titleEmoji="😕"
