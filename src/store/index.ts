@@ -13,10 +13,16 @@ export default createStore({
 
     setDarkTheme(state, value) {
       state.darkTheme = value
+      localStorage.setItem('darkTheme', value.toString())
     }
   },
 
-  actions: {},
+  actions: {
+    fetchDarkTheme({ commit }) {
+      const localStorageData = localStorage.getItem('darkTheme') === 'false' ? false : true
+      commit('setDarkTheme', localStorageData)
+    }
+  },
 
   modules: {}
 })
