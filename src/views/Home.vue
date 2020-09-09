@@ -26,26 +26,20 @@ export default defineComponent({
     const squares = ref(Array(16).fill(0))
     const width = 4
 
-    const saveCurrentGame = (data: Array<number>) => {
-      localStorage.setItem('currentGame', JSON.stringify(data))
-    }
-
     const generate = () => {
       const randomNumber = Math.floor(Math.random() * squares.value.length)
 
       if (squares.value[randomNumber] === 0) {
         squares.value[randomNumber] = 2
-        saveCurrentGame(squares.value)
+        store.commit('setCurrentGame', squares.value)
       } else {
         generate()
       }
     }
 
     const mountGame = () => {
-      const activeGame = localStorage.getItem('currentGame') || ''
-
-      if (activeGame.length) {
-        squares.value = JSON.parse(activeGame)
+      if (store.state.currentGame.length) {
+        squares.value = store.state.currentGame
       } else {
         generate()
       }

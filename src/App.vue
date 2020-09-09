@@ -10,6 +10,7 @@ export default defineComponent({
   name: 'App',
 
   setup() {
+    store.dispatch('fetchCurrentGame')
     store.dispatch('fetchDarkTheme')
   }
 })
