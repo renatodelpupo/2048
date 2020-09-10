@@ -5,19 +5,21 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
+import { computed, defineComponent } from 'vue'
 import Square from '@/components/atoms/Square.vue'
+import store from '@/store'
 
 export default defineComponent({
   name: 'Grid',
 
   components: { Square },
 
-  props: {
-    squares: {
-      required: true,
-      type: Array
-    }
+  setup() {
+    const squares = computed(() => {
+      return store.state.currentGame
+    })
+
+    return { squares }
   }
 })
 </script>

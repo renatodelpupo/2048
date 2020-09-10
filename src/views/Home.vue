@@ -2,7 +2,7 @@
   <div class="Home" :class="[darkTheme ? 'theme-dark' : 'theme-light']">
     <app-header />
     <main class="Main">
-      <grid :squares="squares" />
+      <grid />
     </main>
     <app-footer :score="score" />
   </div>
