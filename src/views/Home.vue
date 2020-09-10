@@ -11,7 +11,7 @@
 <script lang="ts">
 import AppFooter from '@/components/organisms/Footer.vue'
 import AppHeader from '@/components/organisms/Header.vue'
-import { computed, defineComponent, onMounted, ref, watch } from 'vue'
+import { computed, defineComponent, ref, watch } from 'vue'
 import Grid from '@/components/organisms/Grid.vue'
 import router from '@/router'
 import store from '@/store'
@@ -23,34 +23,14 @@ export default defineComponent({
 
   setup() {
     const score = ref(0)
-    const squares = ref(Array(16).fill(0))
     const width = 4
-
-    const generate = () => {
-      const randomNumber = Math.floor(Math.random() * squares.value.length)
-
-      if (squares.value[randomNumber] === 0) {
-        squares.value[randomNumber] = 2
-        store.commit('setCurrentGame', squares.value)
-      } else {
-        generate()
-      }
-    }
-
-    const mountGame = () => {
-      if (store.state.currentGame.length) {
-        squares.value = store.state.currentGame
-      } else {
-        generate()
-      }
-    }
 
     const moveDown = () => {
       for (let i = 0; i < 4; i++) {
-        const totalOne = squares.value[i]
-        const totalTwo = squares.value[i + width]
-        const totalThree = squares.value[i + width * 2]
-        const totalFour = squares.value[i + width * 3]
+        const totalOne = store.state.currentGame[i]
+        const totalTwo = store.state.currentGame[i + width]
+        const totalThree = store.state.currentGame[i + width * 2]
+        const totalFour = store.state.currentGame[i + width * 3]
         const column = [parseInt(totalOne), parseInt(totalTwo), parseInt(totalThree), parseInt(totalFour)]
 
         const filteredColumn = column.filter((num) => num)
@@ -58,20 +38,20 @@ export default defineComponent({
         const zeros = Array(missing).fill(0)
         const newColumn = zeros.concat(filteredColumn)
 
-        squares.value[i] = newColumn[0]
-        squares.value[i + width] = newColumn[1]
-        squares.value[i + width * 2] = newColumn[2]
-        squares.value[i + width * 3] = newColumn[3]
+        store.commit('modifyCurrentGame', { index: i, value: newColumn[0] })
+        store.commit('modifyCurrentGame', { index: i + width, value: newColumn[1] })
+        store.commit('modifyCurrentGame', { index: i + width * 2, value: newColumn[2] })
+        store.commit('modifyCurrentGame', { index: i + width * 3, value: newColumn[3] })
       }
     }
 
     const moveLeft = () => {
       for (let i = 0; i < 16; i++) {
         if (i % 4 === 0) {
-          const totalOne = squares.value[i]
-          const totalTwo = squares.value[i + 1]
-          const totalThree = squares.value[i + 2]
-          const totalFour = squares.value[i + 3]
+          const totalOne = store.state.currentGame[i]
+          const totalTwo = store.state.currentGame[i + 1]
+          const totalThree = store.state.currentGame[i + 2]
+          const totalFour = store.state.currentGame[i + 3]
           const row = [parseInt(totalOne), parseInt(totalTwo), parseInt(totalThree), parseInt(totalFour)]
 
           const filteredRow = row.filter((num) => num)
@@ -79,10 +59,10 @@ export default defineComponent({
           const zeros = Array(missing).fill(0)
           const newRow = filteredRow.concat(zeros)
 
-          squares.value[i] = newRow[0]
-          squares.value[i + 1] = newRow[1]
-          squares.value[i + 2] = newRow[2]
-          squares.value[i + 3] = newRow[3]
+          store.commit('modifyCurrentGame', { index: i, value: newRow[0] })
+          store.commit('modifyCurrentGame', { index: i + 1, value: newRow[1] })
+          store.commit('modifyCurrentGame', { index: i + 2, value: newRow[2] })
+          store.commit('modifyCurrentGame', { index: i + 3, value: newRow[3] })
         }
       }
     }
@@ -90,10 +70,10 @@ export default defineComponent({
     const moveRight = () => {
       for (let i = 0; i < 16; i++) {
         if (i % 4 === 0) {
-          const totalOne = squares.value[i]
-          const totalTwo = squares.value[i + 1]
-          const totalThree = squares.value[i + 2]
-          const totalFour = squares.value[i + 3]
+          const totalOne = store.state.currentGame[i]
+          const totalTwo = store.state.currentGame[i + 1]
+          const totalThree = store.state.currentGame[i + 2]
+          const totalFour = store.state.currentGame[i + 3]
           const row = [parseInt(totalOne), parseInt(totalTwo), parseInt(totalThree), parseInt(totalFour)]
 
           const filteredRow = row.filter((num) => num)
@@ -101,20 +81,20 @@ export default defineComponent({
           const zeros = Array(missing).fill(0)
           const newRow = zeros.concat(filteredRow)
 
-          squares.value[i] = newRow[0]
-          squares.value[i + 1] = newRow[1]
-          squares.value[i + 2] = newRow[2]
-          squares.value[i + 3] = newRow[3]
+          store.commit('modifyCurrentGame', { index: i, value: newRow[0] })
+          store.commit('modifyCurrentGame', { index: i + 1, value: newRow[1] })
+          store.commit('modifyCurrentGame', { index: i + 2, value: newRow[2] })
+          store.commit('modifyCurrentGame', { index: i + 3, value: newRow[3] })
         }
       }
     }
 
     const moveUp = () => {
       for (let i = 0; i < 4; i++) {
-        const totalOne = squares.value[i]
-        const totalTwo = squares.value[i + width]
-        const totalThree = squares.value[i + width * 2]
-        const totalFour = squares.value[i + width * 3]
+        const totalOne = store.state.currentGame[i]
+        const totalTwo = store.state.currentGame[i + width]
+        const totalThree = store.state.currentGame[i + width * 2]
+        const totalFour = store.state.currentGame[i + width * 3]
         const column = [parseInt(totalOne), parseInt(totalTwo), parseInt(totalThree), parseInt(totalFour)]
 
         const filteredColumn = column.filter((num) => num)
@@ -122,19 +102,19 @@ export default defineComponent({
         const zeros = Array(missing).fill(0)
         const newColumn = filteredColumn.concat(zeros)
 
-        squares.value[i] = newColumn[0]
-        squares.value[i + width] = newColumn[1]
-        squares.value[i + width * 2] = newColumn[2]
-        squares.value[i + width * 3] = newColumn[3]
+        store.commit('modifyCurrentGame', { index: i, value: newColumn[0] })
+        store.commit('modifyCurrentGame', { index: i + width, value: newColumn[1] })
+        store.commit('modifyCurrentGame', { index: i + width * 2, value: newColumn[2] })
+        store.commit('modifyCurrentGame', { index: i + width * 3, value: newColumn[3] })
       }
     }
 
     const combineColumn = () => {
       for (let i = 0; i < 12; i++) {
-        if (squares.value[i] === squares.value[i + width]) {
-          const combinedTotal = parseInt(squares.value[i]) + parseInt(squares.value[i + width])
-          squares.value[i] = combinedTotal
-          squares.value[i + width] = 0
+        if (store.state.currentGame[i] === store.state.currentGame[i + width]) {
+          const combinedTotal = parseInt(store.state.currentGame[i]) + parseInt(store.state.currentGame[i + width])
+          store.commit('modifyCurrentGame', { index: i, value: combinedTotal })
+          store.commit('modifyCurrentGame', { index: i + width, value: 0 })
           score.value = score.value + combinedTotal
         }
       }
@@ -142,10 +122,10 @@ export default defineComponent({
 
     const combineRow = () => {
       for (let i = 0; i < 15; i++) {
-        if (squares.value[i] === squares.value[i + 1]) {
-          const combinedTotal = parseInt(squares.value[i]) + parseInt(squares.value[i + 1])
-          squares.value[i] = combinedTotal
-          squares.value[i + 1] = 0
+        if (store.state.currentGame[i] === store.state.currentGame[i + 1]) {
+          const combinedTotal = parseInt(store.state.currentGame[i]) + parseInt(store.state.currentGame[i + 1])
+          store.commit('modifyCurrentGame', { index: i, value: combinedTotal })
+          store.commit('modifyCurrentGame', { index: i + 1, value: 0 })
           score.value = score.value + combinedTotal
         }
       }
@@ -155,28 +135,28 @@ export default defineComponent({
       moveDown()
       combineColumn()
       moveDown()
-      generate()
+      store.dispatch('addNumberToCurrentGame')
     }
 
     const keyLeft = () => {
       moveLeft()
       combineRow()
       moveLeft()
-      generate()
+      store.dispatch('addNumberToCurrentGame')
     }
 
     const keyRight = () => {
       moveRight()
       combineRow()
       moveRight()
-      generate()
+      store.dispatch('addNumberToCurrentGame')
     }
 
     const keyUp = () => {
       moveUp()
       combineColumn()
       moveUp()
-      generate()
+      store.dispatch('addNumberToCurrentGame')
     }
 
     window.document.addEventListener('keyup', (e: KeyboardEvent) => {
@@ -241,21 +221,16 @@ export default defineComponent({
     })
 
     const win = computed(() => {
-      return Boolean(squares.value.includes(2048))
+      return Boolean(store.state.currentGame.includes(2048))
     })
 
     watch(win, (state) => {
       if (state && !store.state.continueAfterCompletion) router.push({ path: '/success' })
     })
 
-    onMounted(() => {
-      mountGame()
-    })
-
     return {
       darkTheme,
-      score,
-      squares
+      score
     }
   }
 })
