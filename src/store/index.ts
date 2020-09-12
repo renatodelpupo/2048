@@ -14,7 +14,7 @@ export default createStore({
 
     setCurrentGame(state, value) {
       state.currentGame = value
-      localStorage.setItem('currentGame', JSON.stringify(value))
+      localStorage.setItem('currentGame', JSON.stringify(state.currentGame))
     },
 
     setDarkTheme(state, value) {
