@@ -4,6 +4,10 @@
       {
         event: 'continue-game',
         text: 'Continue'
+      },
+      {
+        event: 'restart-game',
+        text: 'Restart'
       }
     ]"
     message="You reached 2048!"
@@ -18,6 +22,7 @@
       textColor: '#ffffff'
     }"
     @continue-game="continueGame"
+    @restart-game="restartGame"
   />
 </template>
 
@@ -33,12 +38,21 @@ export default defineComponent({
   components: { GenericScreen },
 
   setup() {
-    const continueGame = () => {
-      store.commit('setContinueAfterCompletion', true)
+    const goToGame = () => {
       router.push({ path: '/' })
     }
 
-    return { continueGame }
+    const continueGame = () => {
+      store.commit('setContinueAfterCompletion', true)
+      goToGame()
+    }
+
+    const restartGame = () => {
+      store.dispatch('resetCurrentGame')
+      goToGame()
+    }
+
+    return { continueGame, restartGame }
   }
 })
 </script>

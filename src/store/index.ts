@@ -53,6 +53,11 @@ export default createStore({
       const currentGame = state.currentGame
       currentGame[index] = value
       commit('setCurrentGame', currentGame)
+    },
+
+    resetCurrentGame({ commit, dispatch }) {
+      commit('setCurrentGame', Array(16).fill(0))
+      dispatch('addNumberToCurrentGame')
     }
   },
 

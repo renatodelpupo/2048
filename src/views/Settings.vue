@@ -6,6 +6,10 @@
         text: 'Back to game'
       },
       {
+        event: 'restart-game',
+        text: 'Restart'
+      },
+      {
         event: 'toggle-theme',
         text: 'Toggle theme'
       }
@@ -13,6 +17,7 @@
     title="Settings"
     :style="style"
     @go-to-game="goToGame"
+    @restart-game="restartGame"
     @toggle-theme="toggleTheme"
   />
 </template>
@@ -54,11 +59,16 @@ export default defineComponent({
       return store.state.darkTheme ? dark : light
     })
 
+    const restartGame = () => {
+      store.dispatch('resetCurrentGame')
+      goToGame()
+    }
+
     const toggleTheme = () => {
       store.commit('setDarkTheme', !store.state.darkTheme)
     }
 
-    return { goToGame, style, toggleTheme }
+    return { goToGame, restartGame, style, toggleTheme }
   }
 })
 </script>
