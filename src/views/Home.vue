@@ -38,10 +38,10 @@ export default defineComponent({
         const zeros = Array(missing).fill(0)
         const newColumn = zeros.concat(filteredColumn)
 
-        store.commit('modifyCurrentGame', { index: i, value: newColumn[0] })
-        store.commit('modifyCurrentGame', { index: i + width, value: newColumn[1] })
-        store.commit('modifyCurrentGame', { index: i + width * 2, value: newColumn[2] })
-        store.commit('modifyCurrentGame', { index: i + width * 3, value: newColumn[3] })
+        store.dispatch('modifyCurrentGame', { index: i, value: newColumn[0] })
+        store.dispatch('modifyCurrentGame', { index: i + width, value: newColumn[1] })
+        store.dispatch('modifyCurrentGame', { index: i + width * 2, value: newColumn[2] })
+        store.dispatch('modifyCurrentGame', { index: i + width * 3, value: newColumn[3] })
       }
     }
 
@@ -59,10 +59,10 @@ export default defineComponent({
           const zeros = Array(missing).fill(0)
           const newRow = filteredRow.concat(zeros)
 
-          store.commit('modifyCurrentGame', { index: i, value: newRow[0] })
-          store.commit('modifyCurrentGame', { index: i + 1, value: newRow[1] })
-          store.commit('modifyCurrentGame', { index: i + 2, value: newRow[2] })
-          store.commit('modifyCurrentGame', { index: i + 3, value: newRow[3] })
+          store.dispatch('modifyCurrentGame', { index: i, value: newRow[0] })
+          store.dispatch('modifyCurrentGame', { index: i + 1, value: newRow[1] })
+          store.dispatch('modifyCurrentGame', { index: i + 2, value: newRow[2] })
+          store.dispatch('modifyCurrentGame', { index: i + 3, value: newRow[3] })
         }
       }
     }
@@ -81,10 +81,10 @@ export default defineComponent({
           const zeros = Array(missing).fill(0)
           const newRow = zeros.concat(filteredRow)
 
-          store.commit('modifyCurrentGame', { index: i, value: newRow[0] })
-          store.commit('modifyCurrentGame', { index: i + 1, value: newRow[1] })
-          store.commit('modifyCurrentGame', { index: i + 2, value: newRow[2] })
-          store.commit('modifyCurrentGame', { index: i + 3, value: newRow[3] })
+          store.dispatch('modifyCurrentGame', { index: i, value: newRow[0] })
+          store.dispatch('modifyCurrentGame', { index: i + 1, value: newRow[1] })
+          store.dispatch('modifyCurrentGame', { index: i + 2, value: newRow[2] })
+          store.dispatch('modifyCurrentGame', { index: i + 3, value: newRow[3] })
         }
       }
     }
@@ -102,10 +102,10 @@ export default defineComponent({
         const zeros = Array(missing).fill(0)
         const newColumn = filteredColumn.concat(zeros)
 
-        store.commit('modifyCurrentGame', { index: i, value: newColumn[0] })
-        store.commit('modifyCurrentGame', { index: i + width, value: newColumn[1] })
-        store.commit('modifyCurrentGame', { index: i + width * 2, value: newColumn[2] })
-        store.commit('modifyCurrentGame', { index: i + width * 3, value: newColumn[3] })
+        store.dispatch('modifyCurrentGame', { index: i, value: newColumn[0] })
+        store.dispatch('modifyCurrentGame', { index: i + width, value: newColumn[1] })
+        store.dispatch('modifyCurrentGame', { index: i + width * 2, value: newColumn[2] })
+        store.dispatch('modifyCurrentGame', { index: i + width * 3, value: newColumn[3] })
       }
     }
 
@@ -113,8 +113,8 @@ export default defineComponent({
       for (let i = 0; i < 12; i++) {
         if (store.state.currentGame[i] === store.state.currentGame[i + width]) {
           const combinedTotal = parseInt(store.state.currentGame[i]) + parseInt(store.state.currentGame[i + width])
-          store.commit('modifyCurrentGame', { index: i, value: combinedTotal })
-          store.commit('modifyCurrentGame', { index: i + width, value: 0 })
+          store.dispatch('modifyCurrentGame', { index: i, value: combinedTotal })
+          store.dispatch('modifyCurrentGame', { index: i + width, value: 0 })
           score.value = score.value + combinedTotal
         }
       }
@@ -124,8 +124,8 @@ export default defineComponent({
       for (let i = 0; i < 15; i++) {
         if (store.state.currentGame[i] === store.state.currentGame[i + 1]) {
           const combinedTotal = parseInt(store.state.currentGame[i]) + parseInt(store.state.currentGame[i + 1])
-          store.commit('modifyCurrentGame', { index: i, value: combinedTotal })
-          store.commit('modifyCurrentGame', { index: i + 1, value: 0 })
+          store.dispatch('modifyCurrentGame', { index: i, value: combinedTotal })
+          store.dispatch('modifyCurrentGame', { index: i + 1, value: 0 })
           score.value = score.value + combinedTotal
         }
       }

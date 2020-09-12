@@ -8,10 +8,6 @@ export default createStore({
   },
 
   mutations: {
-    modifyCurrentGame(state, { index, value }) {
-      state.currentGame[index] = value
-    },
-
     setContinueAfterCompletion(state, value) {
       state.continueAfterCompletion = value
     },
@@ -33,8 +29,7 @@ export default createStore({
       const randomNumber = Math.floor(Math.random() * context.state.currentGame.length)
 
       if (currentGame[randomNumber] === 0) {
-        currentGame[randomNumber] = 2
-        context.commit('setCurrentGame', currentGame)
+        context.dispatch('modifyCurrentGame', { index: randomNumber, value: 2 })
       } else {
         context.dispatch('addNumberToCurrentGame')
       }
@@ -52,6 +47,12 @@ export default createStore({
     fetchDarkTheme({ commit }) {
       const localStorageData = localStorage.getItem('darkTheme') === 'false' ? false : true
       commit('setDarkTheme', localStorageData)
+    },
+
+    modifyCurrentGame({ commit, state }, { index, value }) {
+      const currentGame = state.currentGame
+      currentGame[index] = value
+      commit('setCurrentGame', currentGame)
     }
   },
 
