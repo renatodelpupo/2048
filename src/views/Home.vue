@@ -11,7 +11,7 @@
 <script lang="ts">
 import AppFooter from '@/components/organisms/Footer.vue'
 import AppHeader from '@/components/organisms/Header.vue'
-import { computed, defineComponent, ref, watch } from 'vue'
+import { computed, defineComponent, onMounted, onUnmounted, ref, watch } from 'vue'
 import Grid from '@/components/organisms/Grid.vue'
 import router from '@/router'
 import store from '@/store'
@@ -159,7 +159,14 @@ export default defineComponent({
       store.dispatch('addNumberToCurrentGame')
     }
 
-    window.document.addEventListener('keyup', (e: KeyboardEvent) => {
+    let xDown = 0
+    let yDown = 0
+
+    const getTouches = (evt: TouchEvent) => {
+      return evt.touches
+    }
+
+    const handleKeyUp = (e: KeyboardEvent) => {
       if (e.keyCode === 37) {
         keyLeft()
       } else if (e.keyCode === 38) {
@@ -169,13 +176,6 @@ export default defineComponent({
       } else if (e.keyCode === 40) {
         keyDown()
       }
-    })
-
-    let xDown = 0
-    let yDown = 0
-
-    const getTouches = (evt: TouchEvent) => {
-      return evt.touches
     }
 
     const handleTouchStart = (evt: TouchEvent) => {
@@ -213,8 +213,17 @@ export default defineComponent({
       yDown = 0
     }
 
-    window.document.addEventListener('touchstart', handleTouchStart, false)
-    window.document.addEventListener('touchmove', handleTouchMove, false)
+    const addEventListeners = () => {
+      window.document.addEventListener('keyup', handleKeyUp)
+      window.document.addEventListener('touchmove', handleTouchMove)
+      window.document.addEventListener('touchstart', handleTouchStart)
+    }
+
+    const removeEventListeners = () => {
+      window.document.removeEventListener('keyup', handleKeyUp)
+      window.document.removeEventListener('touchmove', handleTouchMove)
+      window.document.removeEventListener('touchstart', handleTouchStart)
+    }
 
     const darkTheme = computed(() => {
       return store.state.darkTheme
@@ -226,6 +235,14 @@ export default defineComponent({
 
     watch(win, (state) => {
       if (state && !store.state.continueAfterCompletion) router.push({ path: '/success' })
+    })
+
+    onMounted(() => {
+      addEventListeners()
+    })
+
+    onUnmounted(() => {
+      removeEventListeners()
     })
 
     return {
