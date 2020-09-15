@@ -229,8 +229,16 @@ export default defineComponent({
       return store.state.darkTheme
     })
 
+    const lose = computed(() => {
+      return Boolean(!store.state.currentGame.includes(0))
+    })
+
     const win = computed(() => {
       return Boolean(store.state.currentGame.includes(2048))
+    })
+
+    watch(lose, (state) => {
+      if (state) router.push({ path: '/fail' })
     })
 
     watch(win, (state) => {
