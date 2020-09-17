@@ -238,11 +238,11 @@ export default defineComponent({
     })
 
     watch(lose, (state) => {
-      if (state) router.push({ path: '/fail' })
+      if (state) router.push({ name: 'Fail' })
     })
 
     watch(win, (state) => {
-      if (state && !store.state.continueAfterCompletion) router.push({ path: '/success' })
+      if (state && !store.state.continueAfterCompletion) router.push({ name: 'Success' })
     })
 
     onMounted(() => {

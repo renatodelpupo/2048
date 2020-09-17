@@ -39,7 +39,7 @@ export default defineComponent({
 
   setup() {
     const goToGame = () => {
-      router.push({ path: '/' })
+      router.push({ name: 'Home' })
     }
 
     const continueGame = () => {

@@ -5,7 +5,7 @@
       <span lass="Footer-streak-text" v-text="score" />
     </div>
     <div class="Footer-actions">
-      <router-link to="/settings" class="Footer-action">Settings</router-link>
+      <router-link :to="{ name: 'Settings' }" class="Footer-action">Settings</router-link>
     </div>
   </div>
 </template>
