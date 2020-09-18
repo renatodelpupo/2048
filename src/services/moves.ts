@@ -2,7 +2,7 @@ import store from '@/store'
 
 const width = store.state.gameWidth
 
-export const moveDown = () => {
+const moveDown = () => {
   for (let i = 0; i < 4; i++) {
     const totalOne = store.state.currentGame[i]
     const totalTwo = store.state.currentGame[i + width]
@@ -22,7 +22,7 @@ export const moveDown = () => {
   }
 }
 
-export const moveLeft = () => {
+const moveLeft = () => {
   for (let i = 0; i < 16; i++) {
     if (i % 4 === 0) {
       const totalOne = store.state.currentGame[i]
@@ -44,7 +44,7 @@ export const moveLeft = () => {
   }
 }
 
-export const moveRight = () => {
+const moveRight = () => {
   for (let i = 0; i < 16; i++) {
     if (i % 4 === 0) {
       const totalOne = store.state.currentGame[i]
@@ -66,7 +66,7 @@ export const moveRight = () => {
   }
 }
 
-export const moveUp = () => {
+const moveUp = () => {
   for (let i = 0; i < 4; i++) {
     const totalOne = store.state.currentGame[i]
     const totalTwo = store.state.currentGame[i + width]
@@ -86,7 +86,7 @@ export const moveUp = () => {
   }
 }
 
-export const combineColumn = () => {
+const combineColumn = () => {
   for (let i = 0; i < 12; i++) {
     if (store.state.currentGame[i] === store.state.currentGame[i + width]) {
       const combinedTotal = parseInt(store.state.currentGame[i]) + parseInt(store.state.currentGame[i + width])
@@ -97,7 +97,7 @@ export const combineColumn = () => {
   }
 }
 
-export const combineRow = () => {
+const combineRow = () => {
   for (let i = 0; i < 15; i++) {
     if (store.state.currentGame[i] === store.state.currentGame[i + 1]) {
       const combinedTotal = parseInt(store.state.currentGame[i]) + parseInt(store.state.currentGame[i + 1])
@@ -106,4 +106,32 @@ export const combineRow = () => {
       store.commit('setScore', store.state.score + combinedTotal)
     }
   }
+}
+
+export const moveDownHandler = () => {
+  moveDown()
+  combineColumn()
+  moveDown()
+  store.dispatch('addNumberToCurrentGame')
+}
+
+export const moveLeftHandler = () => {
+  moveLeft()
+  combineRow()
+  moveLeft()
+  store.dispatch('addNumberToCurrentGame')
+}
+
+export const moveRightHandler = () => {
+  moveRight()
+  combineRow()
+  moveRight()
+  store.dispatch('addNumberToCurrentGame')
+}
+
+export const moveUpHandler = () => {
+  moveUp()
+  combineColumn()
+  moveUp()
+  store.dispatch('addNumberToCurrentGame')
 }
