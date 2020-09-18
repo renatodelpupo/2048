@@ -34,7 +34,7 @@ export default defineComponent({
 
   setup() {
     const goToGame = () => {
-      router.push({ name: 'Home' })
+      router.push({ name: 'Game' })
     }
 
     const restartGame = () => {

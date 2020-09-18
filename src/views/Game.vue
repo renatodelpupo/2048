@@ -1,5 +1,5 @@
 <template>
-  <div class="Home" :class="[darkTheme ? 'theme-dark' : 'theme-light']">
+  <div class="Game" :class="[darkTheme ? 'theme-dark' : 'theme-light']">
     <app-header />
     <main class="Main">
       <grid />
@@ -18,7 +18,7 @@ import router from '@/router'
 import store from '@/store'
 
 export default defineComponent({
-  name: 'Home',
+  name: 'Game',
 
   components: { AppFooter, AppHeader, Grid },
 
@@ -76,7 +76,7 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scoped>
-.Home {
+.Game {
   display: flex;
   flex-direction: column;
   height: 100vh;

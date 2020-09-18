@@ -1,14 +1,14 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router'
 import Fail from '@/views/Fail.vue'
-import Home from '@/views/Home.vue'
+import Game from '@/views/Game.vue'
 import Settings from '@/views/Settings.vue'
 import Success from '@/views/Success.vue'
 
 const routes: Array<RouteRecordRaw> = [
   {
     path: '/',
-    name: 'Home',
-    component: Home
+    name: 'Game',
+    component: Game
   },
   {
     path: '/fail',
