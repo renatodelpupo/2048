@@ -13,7 +13,7 @@ import AppFooter from '@/components/organisms/Footer.vue'
 import AppHeader from '@/components/organisms/Header.vue'
 import { computed, defineComponent, onMounted, onUnmounted, watch } from 'vue'
 import Grid from '@/components/organisms/Grid.vue'
-import { handleKeyUp } from '@/services/keys'
+import { handleKeyUp } from '@/services/moves-input'
 import router from '@/router'
 import store from '@/store'
 
