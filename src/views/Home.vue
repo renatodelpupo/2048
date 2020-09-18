@@ -13,7 +13,7 @@ import AppFooter from '@/components/organisms/Footer.vue'
 import AppHeader from '@/components/organisms/Header.vue'
 import { computed, defineComponent, onMounted, onUnmounted, watch } from 'vue'
 import Grid from '@/components/organisms/Grid.vue'
-import { handleKeyUp } from '@/services/moves-input'
+import { handleKeyUp, handleTouchMove, handleTouchStart } from '@/services/moves-input'
 import router from '@/router'
 import store from '@/store'
 
@@ -23,48 +23,6 @@ export default defineComponent({
   components: { AppFooter, AppHeader, Grid },
 
   setup() {
-    let xDown = 0
-    let yDown = 0
-
-    const getTouches = (evt: TouchEvent) => {
-      return evt.touches
-    }
-
-    const handleTouchStart = (evt: TouchEvent) => {
-      const firstTouch = getTouches(evt)[0]
-      xDown = firstTouch.clientX
-      yDown = firstTouch.clientY
-    }
-
-    const handleTouchMove = (evt: TouchEvent) => {
-      if (!xDown || !yDown) {
-        return
-      }
-
-      const xUp = evt.touches[0].clientX
-      const yUp = evt.touches[0].clientY
-
-      const xDiff = xDown - xUp
-      const yDiff = yDown - yUp
-
-      if (Math.abs(xDiff) > Math.abs(yDiff)) {
-        if (xDiff > 0) {
-          keyLeft()
-        } else {
-          keyRight()
-        }
-      } else {
-        if (yDiff > 0) {
-          keyUp()
-        } else {
-          keyDown()
-        }
-      }
-
-      xDown = 0
-      yDown = 0
-    }
-
     const addEventListeners = () => {
       window.document.addEventListener('keyup', handleKeyUp)
       window.document.addEventListener('touchmove', handleTouchMove)
