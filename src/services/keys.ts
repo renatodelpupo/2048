@@ -1,31 +1,30 @@
-import * as combine from '@/services/combine'
 import * as moves from '@/services/moves'
 import store from '@/store'
 
 const keyDown = () => {
   moves.moveDown()
-  combine.combineColumn()
+  moves.combineColumn()
   moves.moveDown()
   store.dispatch('addNumberToCurrentGame')
 }
 
 const keyLeft = () => {
   moves.moveLeft()
-  combine.combineRow()
+  moves.combineRow()
   moves.moveLeft()
   store.dispatch('addNumberToCurrentGame')
 }
 
 const keyRight = () => {
   moves.moveRight()
-  combine.combineRow()
+  moves.combineRow()
   moves.moveRight()
   store.dispatch('addNumberToCurrentGame')
 }
 
 const keyUp = () => {
   moves.moveUp()
-  combine.combineColumn()
+  moves.combineColumn()
   moves.moveUp()
   store.dispatch('addNumberToCurrentGame')
 }
