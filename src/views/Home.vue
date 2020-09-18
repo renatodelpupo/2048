@@ -11,6 +11,7 @@
 <script lang="ts">
 import AppFooter from '@/components/organisms/Footer.vue'
 import AppHeader from '@/components/organisms/Header.vue'
+import * as combine from '@/services/combine'
 import { computed, defineComponent, onMounted, onUnmounted, ref, watch } from 'vue'
 import Grid from '@/components/organisms/Grid.vue'
 import * as moves from '@/services/moves'
@@ -23,54 +24,30 @@ export default defineComponent({
   components: { AppFooter, AppHeader, Grid },
 
   setup() {
-    const width = store.state.gameWidth
-
-    const combineColumn = () => {
-      for (let i = 0; i < 12; i++) {
-        if (store.state.currentGame[i] === store.state.currentGame[i + width]) {
-          const combinedTotal = parseInt(store.state.currentGame[i]) + parseInt(store.state.currentGame[i + width])
-          store.dispatch('modifyCurrentGame', { index: i, value: combinedTotal })
-          store.dispatch('modifyCurrentGame', { index: i + width, value: 0 })
-          store.commit('setScore', store.state.score + combinedTotal)
-        }
-      }
-    }
-
-    const combineRow = () => {
-      for (let i = 0; i < 15; i++) {
-        if (store.state.currentGame[i] === store.state.currentGame[i + 1]) {
-          const combinedTotal = parseInt(store.state.currentGame[i]) + parseInt(store.state.currentGame[i + 1])
-          store.dispatch('modifyCurrentGame', { index: i, value: combinedTotal })
-          store.dispatch('modifyCurrentGame', { index: i + 1, value: 0 })
-          store.commit('setScore', store.state.score + combinedTotal)
-        }
-      }
-    }
-
     const keyDown = () => {
       moves.moveDown()
-      combineColumn()
+      combine.combineColumn()
       moves.moveDown()
       store.dispatch('addNumberToCurrentGame')
     }
 
     const keyLeft = () => {
       moves.moveLeft()
-      combineRow()
+      combine.combineRow()
       moves.moveLeft()
       store.dispatch('addNumberToCurrentGame')
     }
 
     const keyRight = () => {
       moves.moveRight()
-      combineRow()
+      combine.combineRow()
       moves.moveRight()
       store.dispatch('addNumberToCurrentGame')
     }
 
     const keyUp = () => {
       moves.moveUp()
-      combineColumn()
+      combine.combineColumn()
       moves.moveUp()
       store.dispatch('addNumberToCurrentGame')
     }
