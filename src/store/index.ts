@@ -5,7 +5,8 @@ export default createStore({
     currentGame: Array(16).fill(0),
     continueAfterCompletion: false,
     darkTheme: true,
-    gameWidth: 4
+    gameWidth: 4,
+    score: 0
   },
 
   mutations: {
@@ -21,6 +22,10 @@ export default createStore({
     setDarkTheme(state, value) {
       state.darkTheme = value
       localStorage.setItem('darkTheme', value.toString())
+    },
+
+    setScore(state, value) {
+      state.score = value
     }
   },
 

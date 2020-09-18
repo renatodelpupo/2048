@@ -23,7 +23,6 @@ export default defineComponent({
   components: { AppFooter, AppHeader, Grid },
 
   setup() {
-    const score = ref(0)
     const width = store.state.gameWidth
 
     const combineColumn = () => {
@@ -32,7 +31,7 @@ export default defineComponent({
           const combinedTotal = parseInt(store.state.currentGame[i]) + parseInt(store.state.currentGame[i + width])
           store.dispatch('modifyCurrentGame', { index: i, value: combinedTotal })
           store.dispatch('modifyCurrentGame', { index: i + width, value: 0 })
-          score.value = score.value + combinedTotal
+          store.commit('setScore', store.state.score + combinedTotal)
         }
       }
     }
@@ -43,7 +42,7 @@ export default defineComponent({
           const combinedTotal = parseInt(store.state.currentGame[i]) + parseInt(store.state.currentGame[i + 1])
           store.dispatch('modifyCurrentGame', { index: i, value: combinedTotal })
           store.dispatch('modifyCurrentGame', { index: i + 1, value: 0 })
-          score.value = score.value + combinedTotal
+          store.commit('setScore', store.state.score + combinedTotal)
         }
       }
     }
@@ -148,6 +147,10 @@ export default defineComponent({
 
     const lose = computed(() => {
       return Boolean(!store.state.currentGame.includes(0))
+    })
+
+    const score = computed(() => {
+      return store.state.score
     })
 
     const win = computed(() => {
