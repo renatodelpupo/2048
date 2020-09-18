@@ -23,7 +23,7 @@ export default defineComponent({
 
   setup() {
     const score = ref(0)
-    const width = 4
+    const width = store.state.gameWidth
 
     const moveDown = () => {
       for (let i = 0; i < 4; i++) {

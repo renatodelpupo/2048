@@ -4,7 +4,8 @@ export default createStore({
   state: {
     currentGame: Array(16).fill(0),
     continueAfterCompletion: false,
-    darkTheme: true
+    darkTheme: true,
+    gameWidth: 4
   },
 
   mutations: {
