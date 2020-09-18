@@ -11,10 +11,9 @@
 <script lang="ts">
 import AppFooter from '@/components/organisms/Footer.vue'
 import AppHeader from '@/components/organisms/Header.vue'
-import * as combine from '@/services/combine'
-import { computed, defineComponent, onMounted, onUnmounted, ref, watch } from 'vue'
+import { computed, defineComponent, onMounted, onUnmounted, watch } from 'vue'
 import Grid from '@/components/organisms/Grid.vue'
-import * as moves from '@/services/moves'
+import { handleKeyUp } from '@/services/keys'
 import router from '@/router'
 import store from '@/store'
 
@@ -24,51 +23,11 @@ export default defineComponent({
   components: { AppFooter, AppHeader, Grid },
 
   setup() {
-    const keyDown = () => {
-      moves.moveDown()
-      combine.combineColumn()
-      moves.moveDown()
-      store.dispatch('addNumberToCurrentGame')
-    }
-
-    const keyLeft = () => {
-      moves.moveLeft()
-      combine.combineRow()
-      moves.moveLeft()
-      store.dispatch('addNumberToCurrentGame')
-    }
-
-    const keyRight = () => {
-      moves.moveRight()
-      combine.combineRow()
-      moves.moveRight()
-      store.dispatch('addNumberToCurrentGame')
-    }
-
-    const keyUp = () => {
-      moves.moveUp()
-      combine.combineColumn()
-      moves.moveUp()
-      store.dispatch('addNumberToCurrentGame')
-    }
-
     let xDown = 0
     let yDown = 0
 
     const getTouches = (evt: TouchEvent) => {
       return evt.touches
-    }
-
-    const handleKeyUp = (e: KeyboardEvent) => {
-      if (e.keyCode === 37) {
-        keyLeft()
-      } else if (e.keyCode === 38) {
-        keyUp()
-      } else if (e.keyCode === 39) {
-        keyRight()
-      } else if (e.keyCode === 40) {
-        keyDown()
-      }
     }
 
     const handleTouchStart = (evt: TouchEvent) => {
