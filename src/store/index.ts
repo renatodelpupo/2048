@@ -41,12 +41,12 @@ export default createStore({
       }
     },
 
-    fetchCurrentGame({ commit }) {
+    fetchCurrentGame({ commit, dispatch }) {
       const localStorageData = localStorage.getItem('currentGame')
       if (localStorageData) {
         commit('setCurrentGame', JSON.parse(localStorageData))
       } else {
-        commit('addNumberToCurrentGame')
+        dispatch('addNumberToCurrentGame')
       }
     },
 
