@@ -15,7 +15,6 @@
       }
     ]"
     title="Settings"
-    :style="style"
     @go-to-game="goToGame"
     @restart-game="restartGame"
     @toggle-theme="toggleTheme"
@@ -24,7 +23,7 @@
 
 <script lang="ts">
 import router from '@/router'
-import { computed, defineComponent } from 'vue'
+import { defineComponent } from 'vue'
 import GenericScreen from '@/components/templates/GenericScreen.vue'
 import store from '@/store'
 
@@ -38,27 +37,6 @@ export default defineComponent({
       router.push({ name: 'Game' })
     }
 
-    const style = computed(() => {
-      const dark = {
-        backgroundColor: '#1e1e1e',
-        button: {
-          backgroundColor: '#383838',
-          textColor: '#ffffff'
-        },
-        textColor: '#ffffff'
-      }
-      const light = {
-        backgroundColor: '#fffeef',
-        button: {
-          backgroundColor: '#7d95a9',
-          textColor: '#fffeef'
-        },
-        textColor: '#65839b'
-      }
-
-      return store.state.darkTheme ? dark : light
-    })
-
     const restartGame = () => {
       store.dispatch('resetCurrentGame')
       goToGame()
@@ -68,7 +46,7 @@ export default defineComponent({
       store.commit('setDarkTheme', !store.state.darkTheme)
     }
 
-    return { goToGame, restartGame, style, toggleTheme }
+    return { goToGame, restartGame, toggleTheme }
   }
 })
 </script>
