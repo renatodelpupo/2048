@@ -30,14 +30,14 @@ export default createStore({
   },
 
   actions: {
-    addNumberToCurrentGame(context) {
-      const currentGame = context.state.currentGame
-      const randomNumber = Math.floor(Math.random() * context.state.currentGame.length)
+    addNumberToCurrentGame({ dispatch, state }) {
+      const currentGame = state.currentGame
+      const randomNumber = Math.floor(Math.random() * state.currentGame.length)
 
       if (currentGame[randomNumber] === 0) {
-        context.dispatch('modifyCurrentGame', { index: randomNumber, value: 2 })
+        dispatch('modifyCurrentGame', { index: randomNumber, value: 2 })
       } else {
-        context.dispatch('addNumberToCurrentGame')
+        dispatch('addNumberToCurrentGame')
       }
     },
 
