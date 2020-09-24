@@ -8,7 +8,7 @@ const moveDown = () => {
     const totalTwo = store.state.currentGame[i + width]
     const totalThree = store.state.currentGame[i + width * 2]
     const totalFour = store.state.currentGame[i + width * 3]
-    const column = [parseInt(totalOne), parseInt(totalTwo), parseInt(totalThree), parseInt(totalFour)]
+    const column = [totalOne, totalTwo, totalThree, totalFour]
 
     const filteredColumn = column.filter((num) => num)
     const missing = 4 - filteredColumn.length
@@ -29,7 +29,7 @@ const moveLeft = () => {
       const totalTwo = store.state.currentGame[i + 1]
       const totalThree = store.state.currentGame[i + 2]
       const totalFour = store.state.currentGame[i + 3]
-      const row = [parseInt(totalOne), parseInt(totalTwo), parseInt(totalThree), parseInt(totalFour)]
+      const row = [totalOne, totalTwo, totalThree, totalFour]
 
       const filteredRow = row.filter((num) => num)
       const missing = 4 - filteredRow.length
@@ -51,7 +51,7 @@ const moveRight = () => {
       const totalTwo = store.state.currentGame[i + 1]
       const totalThree = store.state.currentGame[i + 2]
       const totalFour = store.state.currentGame[i + 3]
-      const row = [parseInt(totalOne), parseInt(totalTwo), parseInt(totalThree), parseInt(totalFour)]
+      const row = [totalOne, totalTwo, totalThree, totalFour]
 
       const filteredRow = row.filter((num) => num)
       const missing = 4 - filteredRow.length
@@ -72,7 +72,7 @@ const moveUp = () => {
     const totalTwo = store.state.currentGame[i + width]
     const totalThree = store.state.currentGame[i + width * 2]
     const totalFour = store.state.currentGame[i + width * 3]
-    const column = [parseInt(totalOne), parseInt(totalTwo), parseInt(totalThree), parseInt(totalFour)]
+    const column = [totalOne, totalTwo, totalThree, totalFour]
 
     const filteredColumn = column.filter((num) => num)
     const missing = 4 - filteredColumn.length
@@ -89,7 +89,7 @@ const moveUp = () => {
 const combineColumn = () => {
   for (let i = 0; i < 12; i++) {
     if (store.state.currentGame[i] === store.state.currentGame[i + width]) {
-      const combinedTotal = parseInt(store.state.currentGame[i]) + parseInt(store.state.currentGame[i + width])
+      const combinedTotal = store.state.currentGame[i] + store.state.currentGame[i + width]
       store.dispatch('modifyCurrentGame', { index: i, value: combinedTotal })
       store.dispatch('modifyCurrentGame', { index: i + width, value: 0 })
       store.commit('setScore', store.state.score + combinedTotal)
@@ -100,7 +100,7 @@ const combineColumn = () => {
 const combineRow = () => {
   for (let i = 0; i < 15; i++) {
     if (store.state.currentGame[i] === store.state.currentGame[i + 1]) {
-      const combinedTotal = parseInt(store.state.currentGame[i]) + parseInt(store.state.currentGame[i + 1])
+      const combinedTotal = store.state.currentGame[i] + store.state.currentGame[i + 1]
       store.dispatch('modifyCurrentGame', { index: i, value: combinedTotal })
       store.dispatch('modifyCurrentGame', { index: i + 1, value: 0 })
       store.commit('setScore', store.state.score + combinedTotal)

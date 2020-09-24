@@ -2,11 +2,11 @@ import { createStore } from 'vuex'
 
 export default createStore({
   state: {
-    currentGame: Array(16).fill(0),
-    continueAfterCompletion: false,
-    darkTheme: true,
-    gameWidth: 4,
-    score: 0
+    currentGame: Array(16).fill(0) as Array<number>,
+    continueAfterCompletion: false as boolean,
+    darkTheme: true as boolean,
+    gameWidth: 4 as number,
+    score: 0 as number
   },
 
   mutations: {
