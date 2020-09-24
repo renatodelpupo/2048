@@ -1,10 +1,13 @@
 <template>
   <div
     class="GenericScreen"
-    :style="{
-      backgroundColor: style.backgroundColor,
-      color: style.textColor
-    }"
+    :class="[darkTheme ? 'theme-dark' : 'theme-light']"
+    :style="
+      style && {
+        backgroundColor: style.backgroundColor,
+        color: style.textColor
+      }
+    "
   >
     <div class="GenericScreen-title">
       <span v-text="title" />
@@ -15,7 +18,7 @@
       <btn
         v-for="button in buttons"
         :key="button.text"
-        :style="style.button"
+        :style="style && style.button"
         :text="button.text"
         @click="
           () => {
@@ -29,7 +32,8 @@
 
 <script lang="ts">
 import Btn from '@/components/atoms/Btn.vue'
-import { defineComponent } from 'vue'
+import { computed, defineComponent } from 'vue'
+import store from '@/store'
 
 type Style = {
   backgroundColor: string
@@ -66,7 +70,18 @@ export default defineComponent({
       type: String
     },
     style: {
+      default: {},
       type: Object as () => Style
+    }
+  },
+
+  setup() {
+    const darkTheme = computed(() => {
+      return store.state.darkTheme
+    })
+
+    return {
+      darkTheme
     }
   }
 })
@@ -99,6 +114,16 @@ export default defineComponent({
     &-emoji {
       display: block;
     }
+  }
+
+  &.theme-dark {
+    background-color: #1e1e1e;
+    color: #ffffff;
+  }
+
+  &.theme-light {
+    background-color: #fffeef;
+    color: #65839b;
   }
 
   .Button {

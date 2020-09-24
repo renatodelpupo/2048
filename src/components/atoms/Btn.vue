@@ -1,10 +1,12 @@
 <template>
   <button
     class="Button"
-    :style="{
-      backgroundColor: style.backgroundColor,
-      color: style.textColor
-    }"
+    :style="
+      style && {
+        backgroundColor: style.backgroundColor,
+        color: style.textColor
+      }
+    "
     v-text="text"
   />
 </template>
@@ -35,5 +37,19 @@ export default defineComponent({
   border: none;
   border-radius: 5px;
   padding: 10px 15px;
+}
+
+.theme-dark {
+  .Button {
+    background-color: #383838;
+    color: #ffffff;
+  }
+}
+
+.theme-light {
+  .Button {
+    background-color: #7d95a9;
+    color: #fffeef;
+  }
 }
 </style>
