@@ -51,8 +51,15 @@ export default createStore({
     },
 
     fetchDarkTheme({ commit }) {
-      const localStorageData = localStorage.getItem('darkTheme') === 'false' ? false : true
-      commit('setDarkTheme', localStorageData)
+      const localStorageDarkScheme = localStorage.getItem('darkTheme')
+      const prefersDarkScheme = window.matchMedia('(prefers-color-scheme: dark)').matches
+
+      if (localStorageDarkScheme) {
+        const status = localStorageDarkScheme === 'true'
+        commit('setDarkTheme', status)
+      } else {
+        commit('setDarkTheme', prefersDarkScheme)
+      }
     },
 
     modifyCurrentGame({ commit, state }, { index, value }) {
