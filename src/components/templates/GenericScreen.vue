@@ -18,7 +18,7 @@
       <btn
         v-for="button in buttons"
         :key="button.text"
-        :style="style && style.button"
+        :style="style?.button || {}"
         :text="button.text"
         @click="
           () => {
