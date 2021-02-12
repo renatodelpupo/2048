@@ -1,6 +1,6 @@
 <template>
-  <div class="Game" :class="[darkTheme ? 'theme-dark' : 'theme-light']">
-    <app-header />
+  <div class="Game" :class="[`theme-${colorTheme}`]">
+    <app-header :theme="colorTheme" title="2048" />
     <main class="Main">
       <grid />
     </main>
@@ -10,7 +10,7 @@
 
 <script lang="ts">
 import AppFooter from '@/components/organisms/Footer.vue'
-import AppHeader from '@/components/organisms/Header.vue'
+import AppHeader from 'delp-ui/components/organisms/Header/Header.vue'
 import { computed, defineComponent, onMounted, onUnmounted, watch } from 'vue'
 import Grid from '@/components/organisms/Grid.vue'
 import { handleKeyUp, handleTouchMove, handleTouchStart } from '@/services/moves-input'
@@ -35,8 +35,8 @@ export default defineComponent({
       window.document.removeEventListener('touchstart', handleTouchStart)
     }
 
-    const darkTheme = computed(() => {
-      return store.state.darkTheme
+    const colorTheme = computed(() => {
+      return store.state.darkTheme ? 'dark' : 'light'
     })
 
     const lose = computed(() => {
@@ -68,7 +68,7 @@ export default defineComponent({
     })
 
     return {
-      darkTheme,
+      colorTheme,
       score
     }
   }
