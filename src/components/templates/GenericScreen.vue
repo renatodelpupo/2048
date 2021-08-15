@@ -70,7 +70,7 @@ export default defineComponent({
       type: String
     },
     style: {
-      default: {},
+      default: () => ({}),
       type: Object as () => Style
     }
   },

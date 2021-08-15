@@ -51,11 +51,11 @@ export default defineComponent({
       return Boolean(store.state.currentGame.includes(2048))
     })
 
-    watch(lose, (state) => {
+    watch(lose, (state: boolean) => {
       if (state) router.push({ name: 'Fail' })
     })
 
-    watch(win, (state) => {
+    watch(win, (state: boolean) => {
       if (state && !store.state.continueAfterCompletion) router.push({ name: 'Success' })
     })
 
