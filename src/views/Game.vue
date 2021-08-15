@@ -1,6 +1,6 @@
 <template>
   <div class="Game" :class="[`theme-${colorTheme}`]">
-    <app-header :theme="colorTheme" title="2048" />
+    <Header :theme="colorTheme" title="2048" />
     <main class="Main">
       <grid />
     </main>
@@ -10,17 +10,17 @@
 
 <script lang="ts">
 import AppFooter from '@/components/organisms/Footer.vue'
-import AppHeader from 'delp-ui/components/organisms/Header/Header.vue'
 import { computed, defineComponent, onMounted, onUnmounted, watch } from 'vue'
 import Grid from '@/components/organisms/Grid.vue'
 import { handleKeyUp, handleTouchMove, handleTouchStart } from '@/services/moves-input'
+import { Header } from 'delp-ui'
 import router from '@/router'
 import store from '@/store'
 
 export default defineComponent({
   name: 'Game',
 
-  components: { AppFooter, AppHeader, Grid },
+  components: { AppFooter, Grid, Header },
 
   setup() {
     const addEventListeners = () => {
