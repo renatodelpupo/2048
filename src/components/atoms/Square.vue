@@ -152,10 +152,7 @@ export default defineComponent({
   display: flex;
   font-size: 40px;
   font-weight: bold;
-  height: 75px;
   justify-content: center;
   line-height: 1;
-  margin: 5px;
-  width: 75px;
 }
 </style>

@@ -27,11 +27,11 @@ export default defineComponent({
 
 <style lang="scss" scoped>
 .Footer {
-  display: flex;
-  height: 45px;
+  display: grid;
+  grid-template-columns: 1fr auto;
   text-transform: uppercase;
-  padding: 15px;
-  width: 100%;
+
+  $padding: 15px;
 
   &-action {
     color: white;
@@ -39,14 +39,16 @@ export default defineComponent({
   }
 
   &-actions {
-    margin: -15px;
-    padding: 15px;
+    align-items: center;
+    display: flex;
+    padding: $padding;
   }
 
   &-streak {
     align-items: center;
     display: flex;
     justify-content: flex-start;
+    padding: $padding;
     width: 100%;
 
     &-icon {

@@ -77,8 +77,8 @@ export default defineComponent({
 
 <style lang="scss" scoped>
 .Game {
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
   height: 100vh;
   overflow: hidden;
 
@@ -92,10 +92,9 @@ export default defineComponent({
 }
 
 .Main {
-  display: flex;
-  flex: 1;
-  flex-direction: column;
-  justify-content: space-between;
+  display: grid;
+  justify-content: center;
   overflow: hidden auto;
+  padding: 20px;
 }
 </style>

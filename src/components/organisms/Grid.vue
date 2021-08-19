@@ -26,10 +26,9 @@ export default defineComponent({
 
 <style lang="scss" scoped>
 .Grid {
-  display: flex;
-  flex-wrap: wrap;
-  height: 340px;
-  margin: 20px auto;
-  width: 340px;
+  display: grid;
+  gap: 10px;
+  grid-template-columns: repeat(4, 75px);
+  grid-template-rows: repeat(4, 75px);
 }
 </style>
