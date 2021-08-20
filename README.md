@@ -10,8 +10,8 @@
 
 ### Code
 
-- CSS Grid / Flexbox
-- Sass
+- CSS Grid, Flexbox
+- Sass SCSS
 - TypeScript
 - Vue 3
 
