@@ -89,26 +89,26 @@ export default defineComponent({
 
 <style lang="scss" scoped>
 .GenericScreen {
-  display: grid;
+  display: flex;
   flex-direction: column;
-  grid-template-rows: minmax(10vh, 20vh) auto 10vh 1fr;
   height: 100vh;
 
   &-button {
     &-list {
-      grid-row-start: 4;
+      margin-top: 10vh;
     }
   }
 
   &-message {
+    margin-top: 10vh;
     text-align: center;
   }
 
   &-title {
     font-size: 24px;
     font-weight: bold;
-    grid-row-start: 2;
     line-height: 1.5;
+    margin-top: 20vh;
     text-align: center;
 
     &-emoji {
